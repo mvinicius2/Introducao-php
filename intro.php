@@ -1,5 +1,5 @@
 <?php
-session_start();
+include "serviços/servMensagemSessao.php"
 
 
 ?>
@@ -20,25 +20,23 @@ session_start();
 
     <form action="script.php" method="post">
         <?php
-        $mensagemSucesso = isset($_SESSION['mensagem.de.sucesso']) ? $_SESSION['mensagem.de.sucesso'] : '';
-        if(!empty($mensagemSucesso))
-        {
-           echo $mensagemSucesso;
+        $mensagemSucesso = obterMensagemSucesso();
+        if (!empty($mensagemSucesso)) {
+            echo $mensagemSucesso;
         }
 
 
 
-         $mensagemErro = isset($_SESSION['mensagem.de.erro']) ? $_SESSION['mensagem.de.erro'] : '';
-         if(!empty($mensagemErro))
-         {
+        $mensagemErro = obterMensagemErro();
+        if (!empty($mensagemErro)) {
             echo $mensagemErro;
-         }
-         
+        }
+
 
         ?>
         <p>Your name: <input type="text" name="nome" /></p>
         <p>Your age: <input type="text" name="idade" /></p>
-        <p><input type="submit" value="Enviar dados do competidor"/></p>
+        <p><input type="submit" value="Enviar dados do competidor" /></p>
     </form>
 
 </body>
